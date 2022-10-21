@@ -28,19 +28,19 @@ These are the high level components break down of the Inbox application
 ## API
 These are the high level APIs
 - REST APIs
-  + [getUserInfo(userId)](getUserInfo(userId))
-  + [getMessageInfo(messageId)](getMessageInfo(messageId))
-  + [addAssignee(messageId, userId)](addAssignee(messageId, userId))
-  + [changeStatus(messageId, status)](changeStatus(messageId, status))
-  + [updateInfo(userId, basicInformation)](updateInfo(userId, basicInformation))
-  + [updateInfo(userId, buisnessInformation)](updateInfo(userId, buisnessInformation))
-  + [updateInfo(userId, notes)](updateInfo(userId, notes))
+  + [getUserInfo(userId)](#getUserInfo(userId))
+  + [getMessageInfo(messageId)](#getMessageInfo(messageId))
+  + [addAssignee(messageId, userId)](#addAssignee(messageIduserId))
+  + [changeStatus(messageId, status)](#changeStatus(messageIdstatus))
+  + [updateInfo(userId, basicInformation)](#updateInfo(userIdbasicInformation))
+  + [updateInfo(userId, buisnessInformation)](#updateInfo(userIdbuisnessInformation))
+  + [updateInfo(userId, notes)](#updateInfo(userIdnotes))
 - WebSocket APIs
 - Media Storage APIs
 - Push Message Handler APIs
 
 ### REST APIs
-#### <a name="getUserInfo(userId)"></a>getUserInfo(userId)
+- ####  <a name="getUserInfo(userId)"></a>getUserInfo(userId)
 Request
 ```
 HTTP GET /user/{userId}
@@ -68,7 +68,7 @@ Response
 ```
 
 
-#### <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
+- ####  <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
 Request
 ```
 HTTP GET /message/{messageId}
@@ -87,7 +87,7 @@ Response
 }
 ```
 
-#### <a name="addAssignee(messageId, userId)"></a>addAssignee(messageId, userId)
+- ####  <a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)
 Request
 ```
 HTTP POST /message/{messageId}/{userId}
@@ -106,7 +106,7 @@ Response
 ```
 
 
-#### <a name="changeStatus(messageId, status)"></a>changeStatus(messageId, status)
+- ####  <a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)
 Request
 ```
 HTTP POST /message/{messageId}
@@ -131,7 +131,7 @@ Response
 }
 ```
 
-#### <a name="updateInfo(userId, basicInformation)"></a>updateInfo(userId, basicInformation)
+- ####  <a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)
 Request
 ```
 HTTP PATCH /user/{messageId}
@@ -168,7 +168,7 @@ Response
 }
 ```
 
-#### <a name="updateInfo(userId, buisnessInformation)"></a>updateInfo(userId, buisnessInformation)
+- ####  <a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)
 Request
 ```
 HTTP PATCH /user/{messageId}
@@ -210,7 +210,7 @@ Response
 }
 ```
 
-#### <a name="updateInfo(userId, notes)"></a>updateInfo(userId, notes)
+- #### <a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)
 Request
 ```
 HTTP PATCH /user/{messageId}
