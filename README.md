@@ -6,26 +6,33 @@
 
 ## High Level Architecture
 
-[High Level Architecture](https://app.diagrams.net/#G1mOMlQIR4K0D9l8fUITVno7_zHTdKj5wt?mode=github)
+[Logical Architecture](https://app.diagrams.net/#G1mOMlQIR4K0D9l8fUITVno7_zHTdKj5wt?mode=github)
+
+![image](https://user-images.githubusercontent.com/946070/197345762-bd40cb3e-00ca-4ed1-9b7d-9201496e5fcd.png)
+
+[High Level Architecture](https://app.diagrams.net/#G1xK5Xg6QbL8vFGZZhMI-nzAjsJiU_AKs1?mode=github)
+
+![image](https://user-images.githubusercontent.com/946070/197345792-748d5fb1-71eb-4cdc-836f-053269140c25.png)
+
 These are the high level components break down of the Inbox application
 
-- Inbox Application
-  - Inbox UI
-    - Inbox Contacts List
-    - Inbox Message Area
-    - Inbox UserInfo
-  - Inbox Storage/Cache
-    - Inbox Messages Storage
-      - Inbox Media Storage
-  - Inbox Communication Engine
-    - Inbox REST API
-    - Inbox WebSocket API
-    - Inbox Media Storage API
-    - Inbox Push Message Handler API
-  - Inbox Logger
-  - Inbox Telemetry
+- Inbox UI
+  - Inbox Contacts List
+  - Inbox Message Area
+  - Inbox UserInfo
+- Inbox Storage/Cache
+  - Inbox Messages Storage
+    - Inbox Media Storage
+- Inbox Communication Engine
+  - Inbox REST API
+  - Inbox WebSocket API
+  - Inbox Media Storage API
+  - Inbox Push Message Handler API
+- Inbox Logger
+- Inbox Telemetry
+- Inbox Data Encryption
 
-![image](https://user-images.githubusercontent.com/946070/197159652-deabbbd1-eeb1-47b9-ad79-9770a825df3c.png)
+
 
 ## API
 
@@ -40,6 +47,9 @@ These are the high level APIs
   - [updateInfo(userId, buisnessInformation)](<#updateInfo(userIdbuisnessInformation)>)
   - [updateInfo(userId, notes)](<#updateInfo(userIdnotes)>)
 - WebSocket APIs
+  - fetchAllMessages()
+  - receiveNewMessage(userId)
+  - sendNewMessage(userId)
 - Media Storage APIs
 - Push Message Handler APIs
 
@@ -266,7 +276,7 @@ Response
 
 ## UI Components
 
-- ### High Level Components
+- ### High Level UI Components
 
   - #### InboxChatUI
 
@@ -355,6 +365,67 @@ Response
 
   Check out [this](https://bradfrost.com/blog/post/atomic-web-design/) article for more details.
 
+## Data Models
+
+- IMessageList
+
+```typescript
+interface IMessageList {
+  userName: string;
+  message: IMessage[];
+  status: StatusType;
+  assignedTo: string;
+}
+```
+- IMessage
+
+```typescript
+interface IMessage {
+  timestamp: string;
+  messageType: string;
+  data: string;
+}
+```
+  
+- IApplicationStatus
+
+```typescript
+interface IApplicationStatus {
+  assignedTo: string;
+  userName: string;
+  status: StatusType;
+}
+```
+
+- IUserInfo
+
+```typescript
+interface IUserInfo {
+  basicInformation: {
+    userName: string;
+    emailAddress: string;
+    phoneNumber: string;
+  },
+  buisnessInformation: {
+    buisnessName: string;
+    name: string;
+    emailAddress: string;
+    buisnessId: number;
+    lastOrder: string;
+    totalOrders: number;
+    totalSpent: string;
+  },
+  notes: string;
+}
+```
+- StatusType
+
+```typescript
+type StatusType = 'open' | 'in-progress' | 'closed'
+}
+```
+  
+
 ## Data Flow
 
 ## Tech Stack
@@ -397,3 +468,4 @@ Response
 - Data protection of stored messages.
 - Adding support for a new messaging system.
 - Handling failure scenarios
+- Adding additional properties for messages to be copied, liked, deleted.
