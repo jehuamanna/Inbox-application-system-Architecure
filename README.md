@@ -8,11 +8,12 @@
 
 [Logical Architecture](https://app.diagrams.net/#G1mOMlQIR4K0D9l8fUITVno7_zHTdKj5wt?mode=github)
 
-![image](https://user-images.githubusercontent.com/946070/197345762-bd40cb3e-00ca-4ed1-9b7d-9201496e5fcd.png)
+![image](https://user-images.githubusercontent.com/946070/197348524-3d002c3f-12cd-44c8-94be-7f990294cda1.png)
+
 
 [High Level Architecture](https://app.diagrams.net/#G1xK5Xg6QbL8vFGZZhMI-nzAjsJiU_AKs1?mode=github)
 
-![image](https://user-images.githubusercontent.com/946070/197345792-748d5fb1-71eb-4cdc-836f-053269140c25.png)
+![image](https://user-images.githubusercontent.com/946070/197348507-5f8ef4c4-d79d-4934-b494-67249d28f089.png)
 
 These are the high level components break down of the Inbox application
 
