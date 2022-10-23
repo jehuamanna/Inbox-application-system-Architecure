@@ -10,7 +10,6 @@
 
 ![image](https://user-images.githubusercontent.com/946070/197348524-3d002c3f-12cd-44c8-94be-7f990294cda1.png)
 
-
 [High Level Architecture](https://app.diagrams.net/#G1xK5Xg6QbL8vFGZZhMI-nzAjsJiU_AKs1?mode=github)
 
 ![image](https://user-images.githubusercontent.com/946070/197348507-5f8ef4c4-d79d-4934-b494-67249d28f089.png)
@@ -33,13 +32,10 @@ These are the high level components break down of the Inbox application
 - Inbox Telemetry
 - Inbox Data Encryption
 
-
-
 ## API
 
-These are the high level APIs
+- These are the high level APIs
 
-- REST APIs
   - [getUserInfo(userId)](<#getUserInfo(userId)>)
   - [getMessageInfo(messageId)](<#getMessageInfo(messageId)>)
   - [addAssignee(messageId, userId)](<#addAssignee(messageIduserId)>)
@@ -47,16 +43,13 @@ These are the high level APIs
   - [updateInfo(userId, basicInformation)](<#updateInfo(userIdbasicInformation)>)
   - [updateInfo(userId, buisnessInformation)](<#updateInfo(userIdbuisnessInformation)>)
   - [updateInfo(userId, notes)](<#updateInfo(userIdnotes)>)
-- WebSocket APIs
-  - fetchAllMessages()
+  - fetchMessages()
+    - filter
+    - search
   - receiveNewMessage(userId)
   - sendNewMessage(userId)
-- Media Storage APIs
-- Push Message Handler APIs
 
-### REST APIs
-
-- #### <a name="getUserInfo(userId)"></a>getUserInfo(userId)
+- ### <a name="getUserInfo(userId)"></a>getUserInfo(userId)
   Request
 
 ```
@@ -85,7 +78,7 @@ Response
 }
 ```
 
-- #### <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
+- ### <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
   Request
 
 ```
@@ -105,7 +98,7 @@ Response
 }
 ```
 
-- #### <a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)
+- ### <a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)
   Request
 
 ```
@@ -125,7 +118,7 @@ Response
 }
 ```
 
-- #### <a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)
+- ### <a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)
   Request
 
 ```
@@ -153,7 +146,7 @@ Response
 }
 ```
 
-- #### <a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)
+- ### <a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)
   Request
 
 ```
@@ -193,7 +186,7 @@ Response
 }
 ```
 
-- #### <a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)
+- ### <a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)
   Request
 
 ```
@@ -238,7 +231,7 @@ Response
 }
 ```
 
-- #### <a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)
+- ### <a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)
   Request
 
 ```
@@ -378,6 +371,7 @@ interface IMessageList {
   assignedTo: string;
 }
 ```
+
 - IMessage
 
 ```typescript
@@ -387,7 +381,7 @@ interface IMessage {
   data: string;
 }
 ```
-  
+
 - IApplicationStatus
 
 ```typescript
@@ -406,7 +400,7 @@ interface IUserInfo {
     userName: string;
     emailAddress: string;
     phoneNumber: string;
-  },
+  };
   buisnessInformation: {
     buisnessName: string;
     name: string;
@@ -415,17 +409,17 @@ interface IUserInfo {
     lastOrder: string;
     totalOrders: number;
     totalSpent: string;
-  },
+  };
   notes: string;
 }
 ```
+
 - StatusType
 
 ```typescript
 type StatusType = 'open' | 'in-progress' | 'closed'
 }
 ```
-  
 
 ## Data Flow
 
@@ -433,20 +427,22 @@ type StatusType = 'open' | 'in-progress' | 'closed'
 
 - Rendering Library.
   - React.
-- Module Bundlers
+- State Management.
+  - xState.
+- Module Bundlers.
   - esbuild
 - Type checking tools.
-  - TypeScript
-- Transpilers
-  - TypeScript compiler
+  - TypeScript.
+- Transpilers.
+  - TypeScript compiler.
 - Unit Testing frameworks.
-  - Jest
-- Integration Testing frameworks
-  - Playwright
-- Telemetry(erros and API calls)
-  - Datadog/Sentry
-- Analytics
-  - Google Analytics/Cloudfare
+  - Jest.
+- Integration Testing frameworks.
+  - Playwright.
+- Telemetry(erros and API calls).
+  - Datadog/Sentry.
+- Analytics.
+  - Google Analytics/Cloudfare.
 
 ## Top metrics to measure success
 
