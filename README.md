@@ -1,5 +1,6 @@
 # Inbox Application
 
+## Table Of Contents
 
 - [Inbox Application](#inbox-application)
   * [User Interface](#user-interface)
