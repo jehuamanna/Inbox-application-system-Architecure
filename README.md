@@ -479,3 +479,54 @@ type StatusType = 'open' | 'in-progress' | 'closed'
 - Adding support for a new messaging system.
 - Handling failure scenarios
 - Adding additional properties for messages to be copied, liked, deleted.
+
+
+
+## Other Points To Discuss
+- Performance and Optimization
+    1. Network.
+        1. Code splitting
+            1. chat code,
+            2. caching
+            3. Loading images faster.
+            4. Vendor code.
+            5. ES6 code.
+            6. minify resources
+        2. Gzip.
+        3. HTTP/2
+
+    2. JavaScript.
+        1. Do less stuff.
+        2. Minify the shipping code.
+        3. Ship less polyfill
+
+    3. Rendering.
+        1. Inline Critical Resources.
+        2. Load analytics scripts later.
+        3. Show shimmer/skeleton for user experience.
+        4. Load noncritical JS in deferred mode.
+        5. Use a constant number of nodes while showing the list.
+
+    4. Images, Video, Audio, PDF
+        1. Compression,
+        2. CDN
+
+    5. Caching.
+        1. Chat messages.
+        2. Images, Videos, PDFs, 
+        3. CSS
+
+
+- Accessibility.
+    1. Keyboard Events.
+    2. Touch events.
+    3. Color Themes.
+    4. Voice commands for live events.
+    5. Force REM units instead of pixels.
+    6. Hotkeys.
+    7. Alt Attributes.
+    8. Semantic HTML
+- Network
+  1. Long polling.
+  2. WebSockets.
+  3. SSE.
