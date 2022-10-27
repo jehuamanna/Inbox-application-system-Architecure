@@ -1,5 +1,44 @@
 # Inbox Application
 
+
+- [Inbox Application](#inbox-application)
+  * [User Interface](#user-interface)
+  * [High Level Architecture](#high-level-architecture)
+  * [API](#api)
+  * [UI Components](#ui-components)
+    + [High Level UI Components](#high-level-ui-components)
+      - [InboxChatUI](#inboxchatui)
+      - [InboxChatUserListWithMessages](#inboxchatuserlistwithmessages)
+      - [InboxChatConversationListWithMessages](#inboxchatconversationlistwithmessages)
+      - [InboxChatUserInformation](#inboxchatuserinformation)
+    + [Sub Components](#sub-components)
+      - [SearchAndFilter](#searchandfilter)
+      - [UserListCard](#userlistcard)
+      - [ConversationMessageCard](#conversationmessagecard)
+      - [ApplicationStatusCard](#applicationstatuscard)
+      - [Tabs](#tabs)
+      - [BasicUserInformationCard](#basicuserinformationcard)
+      - [BuisnessUserInformationCard](#buisnessuserinformationcard)
+      - [InputAndAttachmentsPanel](#inputandattachmentspanel)
+  * [Data Models](#data-models)
+  * [Data Flow](#data-flow)
+  * [Tech Stack](#tech-stack)
+  * [Top metrics to measure success](#top-metrics-to-measure-success)
+  * [Reliability and extensiblity considerations](#reliability-and-extensiblity-considerations)
+  * [Other Points To Discuss](#other-points-to-discuss)
+  * [API Details](#api-details)
+    + [<a name="getUserInfo(userId)"></a>getUserInfo(userId)](#-a-name--getuserinfo-userid-----a-getuserinfo-userid-)
+    + [<a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)](#-a-name--getmessageinfo-messageid-----a-getmessageinfo-messageid-)
+    + [<a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)](#-a-name--addassignee-messageiduserid-----a-addassignee-messageid--userid-)
+    + [<a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)](#-a-name--changestatus-messageidstatus-----a-changestatus-messageid--status-)
+    + [<a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)](#-a-name--updateinfo-useridbasicinformation-----a-updateinfo-userid--basicinformation-)
+    + [<a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)](#-a-name--updateinfo-useridbuisnessinformation-----a-updateinfo-userid--buisnessinformation-)
+    + [<a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)](#-a-name--updateinfo-useridnotes-----a-updateinfo-userid--notes-)
+
+
+
+
+
 ## User Interface
 
 ![image](https://user-images.githubusercontent.com/946070/197158091-c71775f7-0408-44fc-a3b1-a919c0de113a.png)
@@ -49,224 +88,7 @@ These are the high level components break down of the Inbox application
   - receiveNewMessage(userId)
   - sendNewMessage(userId)
 
-- ### <a name="getUserInfo(userId)"></a>getUserInfo(userId)
-  Request
 
-```
-HTTP GET /user/{userId}
-```
-
-Response
-
-```javascript
-{
-    userId: string;
-    basicInformation: {
-        emailAddress: string;
-        phoneNumber: string;
-    },
-    buisnessInformation: {
-        buisnessName: string;
-        name: string;
-        emailAddress: string;
-        buisnessId: number;
-        lastOrder: string;
-        totalOrders: number;
-        totalSpent: string;
-    },
-    notes: string;
-}
-```
-
-- ### <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
-  Request
-
-```
-HTTP GET /message/{messageId}
-```
-
-Response
-
-```javascript
-{
-  messageId: string;
-  assignedTo: string;
-  userId: string;
-  userName: string;
-  assigneeName: string;
-  status: string;
-}
-```
-
-- ### <a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)
-  Request
-
-```
-HTTP POST /message/{messageId}/{userId}
-```
-
-Response
-
-```javascript
-{
-  messageId: string;
-  assignedTo: string;
-  userId: string;
-  userName: string;
-  assigneeName: string;
-  status: string;
-}
-```
-
-- ### <a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)
-  Request
-
-```
-HTTP POST /message/{messageId}
-```
-
-Request Data
-
-```javascript
-{
-  status: string;
-}
-```
-
-Response
-
-```javascript
-{
-  messageId: string;
-  assignedTo: string;
-  userId: string;
-  userName: string;
-  assigneeName: string;
-  status: string;
-}
-```
-
-- ### <a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)
-  Request
-
-```
-HTTP PATCH /user/{messageId}
-```
-
-Request Data
-
-```javascript
-{
-    basicInformation: {
-        emailAddress: string;
-        phoneNumber: string;
-    },
-}
-```
-
-Response
-
-```javascript
-{
-    userId: string;
-    basicInformation: {
-        emailAddress: string;
-        phoneNumber: string;
-    },
-    buisnessInformation: {
-        buisnessName: string;
-        name: string;
-        emailAddress: string;
-        buisnessId: number;
-        lastOrder: string;
-        totalOrders: number;
-        totalSpent: string;
-    },
-    notes: string;
-}
-```
-
-- ### <a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)
-  Request
-
-```
-HTTP PATCH /user/{messageId}
-```
-
-Request Data
-
-```javascript
-{
-    buisnessInformation: {
-        buisnessName: string;
-        name: string;
-        emailAddress: string;
-        buisnessId: number;
-        lastOrder: string;
-        totalOrders: number;
-        totalSpent: string;
-    },
-}
-```
-
-Response
-
-```javascript
-{
-    userId: string;
-    basicInformation: {
-        emailAddress: string;
-        phoneNumber: string;
-    },
-    buisnessInformation: {
-        buisnessName: string;
-        name: string;
-        emailAddress: string;
-        buisnessId: number;
-        lastOrder: string;
-        totalOrders: number;
-        totalSpent: string;
-    },
-    notes: string;
-}
-```
-
-- ### <a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)
-  Request
-
-```
-HTTP PATCH /user/{messageId}
-```
-
-Request Data
-
-```javascript
-{
-  notes: string;
-}
-```
-
-Response
-
-```javascript
-{
-    userId: string;
-    basicInformation: {
-        emailAddress: string;
-        phoneNumber: string;
-    },
-    buisnessInformation: {
-        buisnessName: string;
-        name: string;
-        emailAddress: string;
-        buisnessId: number;
-        lastOrder: string;
-        totalOrders: number;
-        totalSpent: string;
-    },
-    notes: string;
-}
-```
 
 ## UI Components
 
@@ -530,3 +352,223 @@ type StatusType = 'open' | 'in-progress' | 'closed'
   1. Long polling.
   2. WebSockets.
   3. SSE.
+
+## API Details
+- ### <a name="getUserInfo(userId)"></a>getUserInfo(userId)
+  Request
+
+```
+HTTP GET /user/{userId}
+```
+
+Response
+
+```javascript
+{
+    userId: string;
+    basicInformation: {
+        emailAddress: string;
+        phoneNumber: string;
+    },
+    buisnessInformation: {
+        buisnessName: string;
+        name: string;
+        emailAddress: string;
+        buisnessId: number;
+        lastOrder: string;
+        totalOrders: number;
+        totalSpent: string;
+    },
+    notes: string;
+}
+```
+
+- ### <a name="getMessageInfo(messageId)"></a>getMessageInfo(messageId)
+  Request
+
+```
+HTTP GET /message/{messageId}
+```
+
+Response
+
+```javascript
+{
+  messageId: string;
+  assignedTo: string;
+  userId: string;
+  userName: string;
+  assigneeName: string;
+  status: string;
+}
+```
+
+- ### <a name="addAssignee(messageIduserId)"></a>addAssignee(messageId, userId)
+  Request
+
+```
+HTTP POST /message/{messageId}/{userId}
+```
+
+Response
+
+```javascript
+{
+  messageId: string;
+  assignedTo: string;
+  userId: string;
+  userName: string;
+  assigneeName: string;
+  status: string;
+}
+```
+
+- ### <a name="changeStatus(messageIdstatus)"></a>changeStatus(messageId, status)
+  Request
+
+```
+HTTP POST /message/{messageId}
+```
+
+Request Data
+
+```javascript
+{
+  status: string;
+}
+```
+
+Response
+
+```javascript
+{
+  messageId: string;
+  assignedTo: string;
+  userId: string;
+  userName: string;
+  assigneeName: string;
+  status: string;
+}
+```
+
+- ### <a name="updateInfo(userIdbasicInformation)"></a>updateInfo(userId, basicInformation)
+  Request
+
+```
+HTTP PATCH /user/{messageId}
+```
+
+Request Data
+
+```javascript
+{
+    basicInformation: {
+        emailAddress: string;
+        phoneNumber: string;
+    },
+}
+```
+
+Response
+
+```javascript
+{
+    userId: string;
+    basicInformation: {
+        emailAddress: string;
+        phoneNumber: string;
+    },
+    buisnessInformation: {
+        buisnessName: string;
+        name: string;
+        emailAddress: string;
+        buisnessId: number;
+        lastOrder: string;
+        totalOrders: number;
+        totalSpent: string;
+    },
+    notes: string;
+}
+```
+
+- ### <a name="updateInfo(userIdbuisnessInformation)"></a>updateInfo(userId, buisnessInformation)
+  Request
+
+```
+HTTP PATCH /user/{messageId}
+```
+
+Request Data
+
+```javascript
+{
+    buisnessInformation: {
+        buisnessName: string;
+        name: string;
+        emailAddress: string;
+        buisnessId: number;
+        lastOrder: string;
+        totalOrders: number;
+        totalSpent: string;
+    },
+}
+```
+
+Response
+
+```javascript
+{
+    userId: string;
+    basicInformation: {
+        emailAddress: string;
+        phoneNumber: string;
+    },
+    buisnessInformation: {
+        buisnessName: string;
+        name: string;
+        emailAddress: string;
+        buisnessId: number;
+        lastOrder: string;
+        totalOrders: number;
+        totalSpent: string;
+    },
+    notes: string;
+}
+```
+
+- ### <a name="updateInfo(userIdnotes)"></a>updateInfo(userId, notes)
+  Request
+
+```
+HTTP PATCH /user/{messageId}
+```
+
+Request Data
+
+```javascript
+{
+  notes: string;
+}
+```
+
+Response
+
+```javascript
+{
+    userId: string;
+    basicInformation: {
+        emailAddress: string;
+        phoneNumber: string;
+    },
+    buisnessInformation: {
+        buisnessName: string;
+        name: string;
+        emailAddress: string;
+        buisnessId: number;
+        lastOrder: string;
+        totalOrders: number;
+        totalSpent: string;
+    },
+    notes: string;
+}
+```
