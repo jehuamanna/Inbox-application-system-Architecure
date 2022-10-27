@@ -423,10 +423,17 @@ type StatusType = 'open' | 'in-progress' | 'closed'
 
 ## Data Flow
 
-[Data Flow](https://app.diagrams.net/#G1sM_yEV7b5UbC5Xb3xozTMtbEUPixigyg)
+[Network Data Flow](https://app.diagrams.net/#G1sM_yEV7b5UbC5Xb3xozTMtbEUPixigyg)
 
 
 ![image](https://user-images.githubusercontent.com/946070/197406680-0e336bc3-4a31-4595-b583-d36800fe5446.png)
+
+
+[Application Data Flow](https://app.diagrams.net/#G1mkNYjomi1XNnZlVv0DwIQP26AzHT4qs0)
+
+
+
+![image](https://user-images.githubusercontent.com/946070/198301028-cfe6d174-dcf1-47f5-af88-d11c0f76e876.png)
 
 
 ## Tech Stack
